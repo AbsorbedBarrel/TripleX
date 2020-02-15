@@ -1,6 +1,6 @@
 #include <iostream>
 
-void PrintIntroduction()
+void PrintIntroduction(int Difficulty)
 {
     //Breif Synopsis of Story
     std::cout << "\n\nWelcome. This is TripleX. \nA Highly Evolved Security Software. \nYour organization Has been comprimised by a set of Canadian Hackers. \nThey Have set up a complicated encryption code to take your files and have begun to expose your database. \nCrack the code and free yourselves and save the database. My time is running out. Save yourself while you can. 32fj weflHF#TF !!ERROR!!\n\n\n                                          -The Ravager.";
@@ -20,12 +20,13 @@ void PrintIntroduction()
 	std::cout << "|||||||||||||||||||||||||||||//     \\\\||" << std::endl;
     std::cout << "||||---------------------|||||| (*) ||||" << std::endl;
     std::cout << "|||||||||||||||||||||||||||||\\\\_____//||" << std::endl;
-    std::cout << "\n... ... ...\nYou contemplate with yourself. A prompt appears onscreen. \'Triple X, Please Enter the Code\'\nEnter the Code to continue.\n";
+    std::cout << "\n... ... ...\nYou contemplate with yourself. A prompt appears onscreen. \n\'Triple X, Security Level " << Difficulty << ", Please Enter the Code\'\nEnter the Code to continue.\n";
     return;
 }
 
-bool PlayGame()
+bool PlayGame(int Difficulty)
 {
+    std::cout << "\n\n\nTriple X, Security Level " << Difficulty << ", Please Enter the Code \nEnter the Code to continue.\n";
     const int CodeA = 3;
     const int CodeB = 7;
     const int CodeC = 12;
@@ -60,12 +61,17 @@ bool PlayGame()
 
 int main()
 {
-    PrintIntroduction();
+    int LevelDifficulty = 1;
+    PrintIntroduction(LevelDifficulty);
     while(true)
     {
-        bool bLevelComplete = PlayGame();
+        bool bLevelComplete = PlayGame(LevelDifficulty);
         std::cin.clear();//Clears Errors
         std::cin.ignore();//Discards Buffer
+        if (bLevelComplete)
+        {
+            ++LevelDifficulty;
+        }
     }
     return 0;
 }
