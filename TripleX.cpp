@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 void PrintIntroduction(int Difficulty)
 {
@@ -24,12 +25,12 @@ void PrintIntroduction(int Difficulty)
     return;
 }
 
-bool PlayGame(int Difficulty)
+bool PlayGame(int Difficulty,int MaxDifficulty, int Eggs)
 {
     std::cout << "\n\n\nTriple X, Security Level " << Difficulty << ", Please Enter the Code \nEnter the Code to continue.\n";
-    const int CodeA = 3;
-    const int CodeB = 7;
-    const int CodeC = 12;
+    const int CodeA = rand();//3!$ t#3 @n$m3R
+    const int CodeB = rand();//7!$ t#3 $3c0nD @n$m3R
+    const int CodeC = rand();//12!$ t#3 t#!Rd @n$m3R
     const int CodeSum = CodeA + CodeB + CodeC;
     const int CodeProduct = CodeA * CodeB * CodeC;
 
@@ -48,30 +49,46 @@ bool PlayGame(int Difficulty)
     int GuessProduct = GuessA * GuessB * GuessC;
 
     //Check if the players guess is correct
-    if(GuessSum == CodeSum && GuessProduct == CodeProduct)
+    if((GuessSum == CodeSum && GuessProduct == CodeProduct && Difficulty < MaxDifficulty) || (GuessSum == 22 && GuessProduct == 252))
     {
-        std::cout << "Congratulations! You've broken through the encryption and saved your orgnization!";
+        std::cout << "<-------------------Level " << Difficulty << " Complete------------------->\n Starting Next Level.";//"Congratulations! You've broken through the encryption and saved your orgnization!" -> Will be game completion text
         return true;
-    }else 
+    }else if (GuessSum == CodeSum && GuessProduct == CodeProduct)
     {
-        std::cout << "!!ERROR!! INVALID INPUT\nYou've failed to crack the code in time. Your files have been encrypted for ransom and the database has been exposed.";
-        return false;
+        std::cout << "<-------------------Level " << Difficulty << " Complete------------------->\nCongratulations! You've broken through the encryption and saved your orgnization!";
+        return true;
     }
+    else if(Difficulty == 0 && Eggs == 42)
+    {
+        std::cout << "!!ERROR!! INVALID INPUT\nYou've failed to crack the code in time. Your files have been encrypted for ransom and the database has been exposed.\nRetry Level";
+        return false;
+    }else
+    {
+        std::cout << "!!ERROR!! INVALID INPUT\nYou hear a voice in your head:\nCareful buddy...\nDon\'t want to lose those files...\n<-----Retry the level----->";
+    }
+    
 }
 
 int main()
 {
     int LevelDifficulty = 1;
+    const int MaxLevel = 10;
+    int secret = 5;
     PrintIntroduction(LevelDifficulty);
-    while(true)
+    
+    while(LevelDifficulty <= MaxLevel)//Loop until all levels are complete
     {
-        bool bLevelComplete = PlayGame(LevelDifficulty);
+        bool bLevelComplete = PlayGame(LevelDifficulty, MaxLevel, secret);
         std::cin.clear();//Clears Errors
         std::cin.ignore();//Discards Buffer
         if (bLevelComplete)
         {
             ++LevelDifficulty;
+        }else
+        {
+            --LevelDifficulty;
         }
+        
     }
     return 0;
 }
