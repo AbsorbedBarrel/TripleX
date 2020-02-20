@@ -28,10 +28,9 @@ bool PlayGame(int Difficulty,int MaxDifficulty)
 {
     std::cout << "\n\n\nTriple X, Security Level " << Difficulty << ", Please Enter the Code \nEnter the Code to continue.\n";
 
-    int NumRange = 5;
-    const int CodeA = rand() % NumRange;//3!$ t#3 @n$m3R
-    const int CodeB = rand() % NumRange;//7!$ t#3 $3c0nD @n$m3R
-    const int CodeC = rand() % NumRange;//12!$ t#3 t#!Rd @n$m3R
+    const int CodeA = (rand() % Difficulty)+Difficulty;//3!$ t#3 @n$m3R
+    const int CodeB = (rand() % Difficulty)+Difficulty;//7!$ t#3 $3c0nD @n$m3R
+    const int CodeC = (rand() % Difficulty)+Difficulty;//12!$ t#3 t#!Rd @n$m3R
     const int CodeSum = CodeA + CodeB + CodeC;
     const int CodeProduct = CodeA * CodeB * CodeC;
 
@@ -53,7 +52,7 @@ bool PlayGame(int Difficulty,int MaxDifficulty)
     if((GuessSum == CodeSum && GuessProduct == CodeProduct && Difficulty < MaxDifficulty) || (GuessSum == 22 && GuessProduct == 252 && Difficulty < MaxDifficulty))
     {
         std::cout << "<-------------------Level " << Difficulty << " Complete------------------->\n Starting Next Level.";
-        ++NumRange;
+        ++Difficulty;
         return true;
     } 
     else if(!((GuessSum == CodeSum && GuessProduct == CodeProduct && Difficulty < MaxDifficulty) || (GuessSum == 22 && GuessProduct == 252 && Difficulty < MaxDifficulty)) && Difficulty != 10)
@@ -61,11 +60,11 @@ bool PlayGame(int Difficulty,int MaxDifficulty)
         std::cout << "!!ERROR!! INVALID INPUT\nYou hear a voice in your head:\nCareful buddy...\nDon\'t want to lose those files...\n<-----Retry the level----->";
         if (rand() % 5 == 2 || rand() % 5 == 0)
         {
-            ++NumRange;
+            ++Difficulty;
         }
         else
         {
-            --NumRange;
+            --Difficulty;
         }
         return false;
     }
