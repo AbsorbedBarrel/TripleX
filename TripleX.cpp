@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <ctime>
 void PrintIntroduction(int Difficulty)
 {
     //Breif Synopsis of Story
@@ -73,6 +73,7 @@ bool PlayGame(int Difficulty,int MaxDifficulty)
 
 int main()
 {
+    srand(time(NULL));
     int LevelDifficulty = 1;
     const int MaxLevel = 10;
     PrintIntroduction(LevelDifficulty);
