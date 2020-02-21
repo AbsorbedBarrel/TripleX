@@ -1,5 +1,5 @@
 # TripleX
-This is a small WOP terminal based game that I made during a C++ Course.
+This is a small terminal based game that I made during a C++ Course.
 
 Here is the course:https://www.udemy.com/course/unrealcourse/
 
